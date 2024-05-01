@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Story</title>
+</head>
+<body>
+  <p id="story">A rabbit is eating a carrot that is fresh from the garden and orange in color.</p>
+
+  <p>Who is eating a carrot? (Click the button to record your answer)</p>
+  <button id="record-question-1">Record Answer</button>
+
+  <p id="answer-1"></p>
+
+  <p>What is the rabbit eating? (Click the button to record your answer)</p>
+  <button id="record-question-2">Record Answer</button>
+
+  <p id="answer-2"></p>
+
+  <script>
+   
+    document.getElementById('record-question-1').addEventListener('click', function() {
+      // Your voice recording logic here
+      // Update the content of document.getElementById('answer-1') with the recorded audio data
+    });
+
+    document.getElementById('record-question-2').addEventListener('click', function() {
+      // Your voice recording logic here
+      // Update the content of document.getElementById('answer-2') with the recorded audio data
+    });
+  </script>
+</body>
+</html>

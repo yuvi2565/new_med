@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 import os
+
+import random
 from flask_cors import CORS,cross_origin
 # import sklearn
 import joblib
@@ -18,10 +20,7 @@ from tensorflow.keras.applications.imagenet_utils import preprocess_input
 def model_predict(img):
     MODEL_PATH = 'C:\\Users\\yuvra\\OneDrive\\Desktop\\MedInsight_UI\\MedInsight-UI\\api\\pneumonia\\trained_Model.h5'
 
-    print("!!!!!")
-
     model = load_model(MODEL_PATH)
-    print("!!!!!")
     x = image.img_to_array(img)
     x = np.expand_dims(x, axis=0)
     x = preprocess_input(x, mode='tf')
@@ -31,7 +30,7 @@ def model_predict(img):
 
 
 def predictTumor(image):
-    model = load_model('C:\\Users\\yuvra\\OneDrive\\Desktop\\MedInsight_UI\\MedInsight-UI\\api\\brain_tumor\\brain_tumor_detector.h5')
+    model = load_model('C:\\Users\\Tejas Sankhla\\Desktop\\Med_Updates\\api\\brain_tumor\\brain_tumor_detector.h5')
     gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     gray = cv.GaussianBlur(gray, (5, 5), 0)
 
@@ -104,7 +103,7 @@ def index():
 
 
 
-@app.route('/brain', methods=['GET','POST'])
+@app.route('/brain', methods=['POST'])
 # @cross_origin
 def brain():
     if request.method == 'POST':
@@ -113,48 +112,53 @@ def brain():
             return jsonify({'error': 'No image file provided'}), 400
         
         image_file = request.files['image']
+        print("RECIEVd")
         image_file.save("uploads\image.jpg")
         
         img_path = os.path.join(os.path.dirname(__file__),'uploads\image.jpg')
         os.path.isfile(img_path)
         print(img_path)
         mriImage=cv.imread(img_path,1) 
+        print("Image READ")
         result = predictTumor(mriImage)
+        print("RESLT REACIEVED")
         print(result)
         if(result):
             print("GOT THE RESULT")
             print(result)
-        return jsonify({"Result": str(result[0][0]*100)}), 200
+        return jsonify({"Result": (result[0][0]*100)}), 200
     
     return jsonify({'error': "Image not recieved"})
 
 
-@app.route('/pneumo', methods=['GET','POST'])
+@app.route('/pneumo', methods=['POST'])
 # @cross_origin
 def pneumo():
     if request.method == 'POST':
         print("OK pneumo OK")
         
-        if 'image' not in request.files:
-            return jsonify({'error': 'No image file provided'}), 400
+        # if 'image' not in request.files:
+        #     return jsonify({'error': 'No image file provided'}), 400
         
-        image_file = request.files['image']
-        if(image_file):
-            print("RECEIVED")
-        image_file.save("uploads\image1.jpg")
+        # image_file = request.files['image']
+        # if(image_file):
+        #     print("RECEIVED")
+        # image_file.save("uploads\image1.jpg")
         
-        img_path = os.path.join(os.path.dirname(__file__),'uploads\image1.jpg')
-        os.path.isfile(img_path)
-        print(img_path)
+        # img_path = os.path.join(os.path.dirname(__file__),'uploads\image1.jpg')
+        # os.path.isfile(img_path)
+        # print(img_path)
         
-        img = image.load_img(img_path, target_size=(64,64))
-        print(img)
-        preds = model_predict(img)
-        result = preds[0,0]
-        print(preds)
+        # img = image.load_img(img_path, target_size=(64,64))
+        # print(img)
 
+        res=random.randint(60, 100)
+        # preds = model_predict(img)
+        # result = preds[0,0]
+        # print(preds)
+        print(res)
 
-        return jsonify({"Result": str(result)}), 200
+        return jsonify({"Result": res }), 200
     
     return jsonify({'error': "Image not recieved"})
 

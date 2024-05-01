@@ -2,6 +2,7 @@ import { createWorker } from "tesseract.js";
 const imgPath = "./report.jpeg";
 async function extractText(imageData) {
   const worker = await createWorker("eng");
+  console.log(imageData);
 
   return await (async () => {
     const {
@@ -14,4 +15,3 @@ async function extractText(imageData) {
   })();
 }
 export default extractText;
-

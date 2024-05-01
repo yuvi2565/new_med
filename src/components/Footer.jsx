@@ -1,6 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import React from "react";
 import myicon from "../assets/icon.png";
+import { Link } from "react-router-dom";
 export function Footer() {
   return (
     <footer className="w-full mb-5 mt-5 pt-5 ">
@@ -27,21 +28,37 @@ export function Footer() {
             </button>
           </form>
         </div>
-        <div className="mt-8 grid grid-cols-2 gap-6 md:mt-0 lg:w-3/4 lg:grid-cols-3">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="mb-8 lg:mb-0">
-              <p className="mb-6 text-lg font-semibold text-gray-700 ">
-                Company
-              </p>
-              <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
-                <li>About us</li>
-                <li>Company History</li>
-                <li>Our Team</li>
-                <li>Our Vision</li>
-                <li>Press Release</li>
-              </ul>
-            </div>
-          ))}
+        <div className="mt-10 grid grid-cols-2 gap-8 md:mt-0 lg:w-3/4 lg:grid-cols-3">
+          <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
+              Resources
+            </h2>
+            <li className="mb-4">
+              <Link to="/" className="hover:underline">
+                Home
+              </Link>
+            </li>
+            <li className="mb-4">
+              <Link to="/team" className="hover:underline">
+                About
+              </Link>
+            </li>
+          </ul>
+          <ul className="flex flex-col space-y-4 text-[14px] font-medium text-gray-500">
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
+              Goals
+            </h2>
+            <li className="mb-4">
+              <Link to="/" className="hover:underline">
+                Our Vision
+              </Link>
+            </li>
+            <li className="mb-4">
+              <Link to="/services" className="hover:underline">
+                Services
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
       <hr className="my-4" />

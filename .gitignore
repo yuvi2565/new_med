@@ -14,7 +14,7 @@ dist-ssr
 
 node_server/node_modules/
 .env
-api/venv/Lib/
+api/venv/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

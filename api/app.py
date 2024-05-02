@@ -30,7 +30,7 @@ def model_predict(img):
 
 
 def predictTumor(image):
-    model = load_model('C:\\Users\\Tejas Sankhla\\Desktop\\Med_Updates\\api\\brain_tumor\\brain_tumor_detector.h5')
+    model = load_model('C:\\Users\\yuvra\\OneDrive\\Desktop\\final_medInsight\\new_med\\api\\brain_tumor\\brain_tumor_detector.h5')
     gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     gray = cv.GaussianBlur(gray, (5, 5), 0)
 
